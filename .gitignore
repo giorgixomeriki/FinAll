@@ -1,0 +1,25 @@
+# Build results
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Dependencies
+node_modules/
+.npm
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
