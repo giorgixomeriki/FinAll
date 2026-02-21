@@ -23,3 +23,10 @@ node_modules/
 # OS
 .DS_Store
 Thumbs.db
+
+# Frontend build and dependencies
+/financial-profile-frontend/build/
+/financial-profile-frontend/node_modules/
+
+# ASP.NET static output
+/wwwroot/

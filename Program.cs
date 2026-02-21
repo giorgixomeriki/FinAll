@@ -5,12 +5,15 @@ using FinancialProfileManagerAPI.Hubs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System;
 using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 
 // Configure Serilog
@@ -123,10 +126,17 @@ try
     app.UseAuthentication();
     app.UseAuthorization();
 
+    // Serve SPA static files (if present in wwwroot)
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+
     // ✅ SignalR Hub mapping
     app.MapHub<FinancialHub>("/hubs/financial");
 
     app.MapControllers();
+
+    // Fallback to index.html for SPA client-side routing
+    app.MapFallbackToFile("index.html");
 
     Log.Information("Application started successfully");
     app.Run();
